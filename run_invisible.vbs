@@ -13,5 +13,5 @@ Dim scriptPath
 scriptPath = CreateObject("Scripting.FileSystemObject").GetParentFolderName(WScript.ScriptFullName)
 
 Set WshShell = CreateObject("WScript.Shell")
-WshShell.Run Chr(34) & scriptPath & "\clear_ram_loop.bat" & Chr(34), 1
+WshShell.Run Chr(34) & scriptPath & "\clear_ram_loop.bat" & Chr(34), 0
 Set WshShell = Nothing
