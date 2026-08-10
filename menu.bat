@@ -31,9 +31,10 @@ goto menu
 :add_startup
 echo.
 echo [*] Adding to Startup via Scheduled Task (No UAC Popup on Boot)...
-schtasks /create /tn "WindowsOptimizerLoop" /tr "wscript.exe \"%~dp0run_invisible.vbs\" /elevated" /sc onlogon /rl highest /f >nul
+if not exist "%~dp0WindowsOptimizer.exe" copy "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" "%~dp0WindowsOptimizer.exe" >nul
+schtasks /create /tn "WindowsOptimizerLoop" /tr "\"%~dp0WindowsOptimizer.exe\" -WindowStyle Hidden -ExecutionPolicy Bypass -File \"%~dp0tray_manager.ps1\"" /sc onlogon /rl highest /f >nul
 echo [*] Starting the Optimizer now...
-start wscript.exe "%~dp0run_invisible.vbs" /elevated
+start "" "%~dp0WindowsOptimizer.exe" -WindowStyle Hidden -ExecutionPolicy Bypass -File "%~dp0tray_manager.ps1"
 echo [OK] Done! The optimizer will now run silently in the background and on every boot.
 pause
 goto menu
@@ -41,8 +42,9 @@ goto menu
 :start_once
 echo.
 echo [*] Starting Optimizer in the background...
-start wscript.exe "%~dp0run_invisible.vbs" /elevated
-echo [OK] Done! The optimizer is running silently.
+if not exist "%~dp0WindowsOptimizer.exe" copy "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" "%~dp0WindowsOptimizer.exe" >nul
+start "" "%~dp0WindowsOptimizer.exe" -WindowStyle Hidden -ExecutionPolicy Bypass -File "%~dp0tray_manager.ps1"
+echo [OK] Done! Check your System Tray (bottom right) for the icon.
 pause
 goto menu
 
