@@ -1,0 +1,181 @@
+﻿========================================================================
+                 FULL SYSTEM MEMORY REPORT
+                 Generated: 2026-08-10 21:50:59
+========================================================================
+
+--- SYSTEM OVERVIEW ---
+Total Physical RAM: 7.21 GB
+Used Physical RAM:  4.79 GB
+Free Physical RAM:  2.42 GB
+
+--- PROCESSES BY RAM USAGE ---
+Below is the list of all running tasks and apps consuming memory.
+
+
+Process Name                       PID RAM (MB) Page File (MB) Company / Description                
+------------                       --- -------- -------------- ---------------------                
+Memory Compression                3132 611.48   2.24                                                
+MsMpEng                           6216 369.31   408.88                                              
+Antigravity IDE                  13172 332.79   415.55         Antigravity IDE                      
+Antigravity IDE                  14128 177.14   356.49         Antigravity IDE                      
+language_server_windows_x64      13320 130.07   171.55                                              
+Antigravity IDE                  11476 113.64   168.81         Antigravity IDE                      
+explorer                          8400 96.05    246.86         Windows Explorer                     
+MSPCManager                      11580 92.29    74.85          MSPCManager                          
+Antigravity IDE                  13224 87.40    401.11         Antigravity IDE                      
+Antigravity IDE                  10520 82.40    26.66          Antigravity IDE                      
+powershell                        8464 80.52    62.83          Windows PowerShell                   
+powershell                       15352 74.58    136.05         Windows PowerShell                   
+powershell                        7968 63.18    47.57          Windows PowerShell                   
+ShellExperienceHost              12724 56.23    40.31          Windows Shell Experience Host        
+language_server_windows_x64      10780 54.66    113.66                                              
+AppActions                        2488 47.52    16.87          AppActions                           
+Secure System                      188 44.09    0.17                                                
+TextInputHost                    12208 42.18    122.63                                              
+Registry                           232 42.08    8.18                                                
+dwm                               1740 40.03    113.64                                              
+ctfmon                            8812 39.06    23.93                                               
+MSPCManagerCore                  11908 38.70    51.63                                               
+Antigravity IDE                  14748 37.88    84.79          Antigravity IDE                      
+MSPCManagerService                6776 36.44    26.93                                               
+audiodg                           5348 32.05    33.23                                               
+BridgeCommunication               6412 31.52    5.56                                                
+svchost                           2260 31.36    24.61                                               
+Antigravity IDE                  14848 29.91    137.47         Antigravity IDE                      
+lsass                             1796 29.84    10.11                                               
+MpDefenderCoreService             6200 24.04    9.54                                                
+svchost                           4744 23.89    14.73                                               
+Antigravity IDE                  13816 22.78    88.24          Antigravity IDE                      
+RuntimeBroker                     2324 20.57    6.04           Runtime Broker                       
+svchost                           8524 20.51    8.58           Host Process for Windows Services    
+Antigravity IDE                  13840 20.08    85.55          Antigravity IDE                      
+msedgewebview2                   11020 19.71    83.62          Microsoft Edge WebView2              
+msedgewebview2                    9356 19.26    39.91          Microsoft Edge WebView2              
+svchost                           7172 19.25    12.77          Host Process for Windows Services    
+services                          1768 18.11    5.30                                                
+OfficeClickToRun                  6264 17.46    20.18                                               
+sihost                            8168 17.38    7.34           Shell Infrastructure Host            
+Antigravity IDE                  13276 16.86    17.59          Antigravity IDE                      
+svchost                           1936 15.79    10.55                                               
+NisSrv                            5360 14.32    4.26                                                
+svchost                          13856 14.01    30.55                                               
+svchost                           8476 13.63    3.02                                                
+StartMenuExperienceHost           9508 12.32    61.28          Windows Start Experience Host        
+SearchHost                        9500 12.07    55.69                                               
+kdeconnectd                       4536 11.98    13.12                                               
+warp-svc                          6196 11.87    65.05                                               
+svchost                           4364 11.83    8.93                                                
+WmiPrvSE                          3708 11.45    7.43                                                
+Antigravity IDE                  14876 11.34    31.80          Antigravity IDE                      
+svchost                           1360 10.34    6.60                                                
+NVDisplay.Container               3080 10.05    27.31                                               
+TouchpointAnalyticsClientService  4988 9.66     60.58                                               
+svchost                           2520 9.58     8.99                                                
+wininit                           1628 8.89     1.57                                                
+svchost                           4888 8.86     4.83                                                
+msedgewebview2                    9168 8.84     56.04          Microsoft Edge WebView2              
+RuntimeBroker                    11768 8.34     2.51           Runtime Broker                       
+svchost                           2724 8.28     3.76                                                
+svchost                           2560 8.19     5.42                                                
+SysInfoCap                        4980 8.16     202.56                                              
+svchost                           2300 7.43     20.90                                               
+svchost                           2088 7.38     11.16                                               
+RuntimeBroker                     9776 7.35     7.27           Runtime Broker                       
+svchost                           2100 7.30     9.06                                                
+msedgewebview2                   12096 7.27     38.82          Microsoft Edge WebView2              
+NVDisplay.Container               3420 7.02     32.02                                               
+SearchIndexer                     9316 6.73     8.61                                                
+csrss                             1636 6.62     2.87                                                
+ShellHost                         8452 6.44     31.16          ShellHost                            
+Antigravity IDE                  13716 6.22     11.81          Antigravity IDE                      
+msedgewebview2                   10996 6.01     12.94          Microsoft Edge WebView2              
+csrss                             1424 6.01     2.41                                                
+powershell                        8580 5.96     62.93          Windows PowerShell                   
+svchost                           5832 5.90     6.60                                                
+svchost                           2220 5.82     4.61                                                
+Antigravity IDE                  13724 5.76     43.22          Antigravity IDE                      
+svchost                           3276 5.57     9.20                                                
+node                              5672 5.55     19.22          Node.js JavaScript Runtime           
+node                             14956 5.47     19.18          Node.js JavaScript Runtime           
+taskhostw                         8704 5.32     4.95           Host Process for Windows Tasks       
+CrossDeviceResume                 8664 5.27     32.35                                               
+OverlayHelper                     7648 5.03     29.49                                               
+msedgewebview2                   11176 5.03     9.09           Microsoft Edge WebView2              
+svchost                           4176 4.81     2.44                                                
+OmenInstallMonitor                7672 4.70     27.50                                               
+svchost                           4088 4.69     11.15                                               
+node                             13076 4.45     19.48          Node.js JavaScript Runtime           
+powershell                        7724 4.39     63.01          Windows PowerShell                   
+powershell                       11080 4.25     62.72          Windows PowerShell                   
+node                             15168 4.25     19.51          Node.js JavaScript Runtime           
+RtkAudUService64                  6020 4.20     25.74                                               
+atieclxx                          4472 4.17     5.17                                                
+kdeconnect-indicator              1412 3.96     6.47                                                
+svchost                           2568 3.93     1.82                                                
+svchost                           9784 3.73     3.93           Host Process for Windows Services    
+RtkAudUService64                 10972 3.72     25.23          Realtek HD Audio Universal Service   
+msedgewebview2                    5928 3.48     46.18          Microsoft Edge WebView2              
+NetworkCap                        4932 3.46     4.89                                                
+Antigravity IDE                  13064 3.43     10.59          Antigravity IDE                      
+DiagsCap                          4960 3.30     4.80                                                
+AppHelperCap                      7956 3.28     5.63                                                
+msedgewebview2                    7892 3.12     12.66          Microsoft Edge WebView2              
+RtkAudUService64                  7788 3.07     24.74                                               
+conhost                          14856 2.99     1.38           Console Window Host                  
+svchost                           2760 2.91     2.75                                                
+HPCommRecovery                    5464 2.90     13.27                                               
+node                             14816 2.87     71.96          Node.js JavaScript Runtime           
+conhost                           9836 2.86     1.38           Console Window Host                  
+WmiPrvSE                          3700 2.71     3.28                                                
+spoolsv                           5900 2.53     5.68                                                
+svchost                           3444 2.52     2.02                                                
+unsecapp                          5520 2.48     1.71                                                
+svchost                           6064 2.47     2.09                                                
+svchost                           4540 2.43     2.49                                                
+svchost                           6164 2.39     2.27                                                
+svchost                           4144 2.36     2.00                                                
+ETDCtrl                           8008 2.33     6.80           ETD Control Center                   
+svchost                           2312 2.32     2.48                                                
+svchost                           4652 2.29     2.58                                                
+SECOMN64                          6188 2.27     4.39                                                
+msedgewebview2                    9964 2.25     49.90          Microsoft Edge WebView2              
+msedgewebview2                   12148 2.13     2.82           Microsoft Edge WebView2              
+msedgewebview2                   10372 2.10     2.88           Microsoft Edge WebView2              
+svchost                          14064 2.00     2.13                                                
+winlogon                          1696 1.94     2.68                                                
+SECOCL64                          7748 1.89     2.57           SECOCL.exe                           
+fontdrvhost                       1968 1.82     2.25                                                
+System                               4 1.81     0.05                                                
+amdfendrsr                        3144 1.79     2.45                                                
+WUDFHost                          2012 1.77     1.83                                                
+conhost                          13332 1.75     1.25           Console Window Host                  
+node                             15112 1.73     112.71         Node.js JavaScript Runtime           
+node                             15192 1.70     19.70          Node.js JavaScript Runtime           
+ovpnhelper_service                6152 1.70     1.63                                                
+svchost                           5796 1.69     1.80                                                
+msedgewebview2                   11452 1.68     8.93           Microsoft Edge WebView2              
+node                             15196 1.68     19.44          Node.js JavaScript Runtime           
+OmenCap                           2900 1.63     2.12                                                
+atiesrxx                          3136 1.63     1.91                                                
+WUDFHost                          5048 1.61     2.02                                                
+ETDService                        6176 1.58     1.65                                                
+conhost                          13428 1.57     1.37           Console Window Host                  
+wlanext                           6092 1.55     1.21                                                
+svchost                          13616 1.55     2.05                                                
+taskhostw                         7952 1.54     1.41                                                
+conhost                          14388 1.54     1.39           Console Window Host                  
+smss                               816 1.52     1.14                                                
+dbus-daemon                       4524 1.50     1.64           dbus - FreeDesktop message bus system
+svchost                           1904 1.43     1.27           Host Process for Windows Services    
+conhost                           5216 1.41     1.24           Console Window Host                  
+conhost                           9080 1.39     1.17           Console Window Host                  
+NgcIso                            4684 1.38     1.24                                                
+conhost                           2236 1.38     1.16           Console Window Host                  
+conhost                           5232 1.37     1.23           Console Window Host                  
+cmd                              14612 1.35     4.52           Windows Command Processor            
+cmd                              15140 1.35     4.65           Windows Command Processor            
+fontdrvhost                       1976 1.35     1.44                                                
+LsaIso                            1788 1.35     1.10                                                
+Idle                                 0 0.01     0.06                                                
+
+
