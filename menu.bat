@@ -31,11 +31,10 @@ goto menu
 :add_startup
 echo.
 echo [*] Adding to Startup via Scheduled Task (No UAC Popup on Boot)...
-:: Create scheduled task to run at logon with highest privileges to avoid UAC
 schtasks /create /tn "WindowsOptimizerLoop" /tr "wscript.exe \"%~dp0run_invisible.vbs\" /elevated" /sc onlogon /rl highest /f >nul
 echo [*] Starting the Optimizer now...
 start wscript.exe "%~dp0run_invisible.vbs" /elevated
-echo [✓] Done! The optimizer will now run silently in the background and on every boot.
+echo [OK] Done! The optimizer will now run silently in the background and on every boot.
 pause
 goto menu
 
@@ -43,7 +42,7 @@ goto menu
 echo.
 echo [*] Starting Optimizer in the background...
 start wscript.exe "%~dp0run_invisible.vbs" /elevated
-echo [✓] Done! The optimizer is running silently.
+echo [OK] Done! The optimizer is running silently.
 pause
 goto menu
 
@@ -53,6 +52,6 @@ echo [*] Running Revert Script...
 call "%~dp0revert.bat"
 echo [*] Removing Scheduled Task (if exists)...
 schtasks /delete /tn "WindowsOptimizerLoop" /f >nul 2>&1
-echo [✓] All changes reverted and removed from startup.
+echo [OK] All changes reverted and removed from startup.
 pause
 goto menu

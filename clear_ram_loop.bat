@@ -118,8 +118,11 @@ echo [*] Running RamMap64 to clear standby memory...
 :: Accept the EULA silently to prevent dialog
 reg add "HKCU\Software\Sysinternals\RamMap" /v EulaAccepted /t REG_DWORD /d 1 /f >nul
 
-:: Run RamMap silently with the -Et -Es -Em -Ew flag to clear everything
-"%~dp0RAMMap64.exe" -Et -Es -Em -Ew
+:: Run RamMap silently for each clearing operation because it doesn't support combined flags
+"%~dp0RAMMap64.exe" -Et
+"%~dp0RAMMap64.exe" -Es
+"%~dp0RAMMap64.exe" -Em
+"%~dp0RAMMap64.exe" -Ew
 
 echo [✓] Cleanup Done. 
 

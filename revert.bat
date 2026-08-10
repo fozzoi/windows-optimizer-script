@@ -42,6 +42,7 @@ schtasks /Change /TN "Microsoft\Windows\WindowsUpdate\sih" /Enable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\WindowsUpdate\sihboot" /Enable >nul 2>&1
 
 :: Kill the loop if it's running
+taskkill /f /im cmd.exe /fi "WINDOWTITLE eq Administrator:  Windows Optimizer Script" >nul 2>&1
 taskkill /f /im cmd.exe /fi "WINDOWTITLE eq Windows Optimizer Script" >nul 2>&1
 
 echo [✓] System settings, services, and registry restored to default.
