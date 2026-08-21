@@ -1,144 +1,71 @@
-# ⚡ Windows RAM & Performance Optimizer | Clean, Kill, Boost
+# ⚡ Windows RAM & Performance Optimizer Hub (v2.0)
 
-> ⚠️ **Use at your own risk. For educational purposes only.**
+> ⚠️ **Use at your own risk. For educational and performance enhancement purposes.**
 
-A powerful and lightweight Windows optimization tool for advanced users, gamers, and anyone suffering from lag or memory hogs. This script disables unnecessary services, cleans memory and temp files, and integrates with RAMMap64 to clear standby RAM.
+A modern, lightweight Windows optimization suite with a dark-themed WPF Graphical Interface, real-time memory telemetry, instant RAM trimming, customizable background app terminating, and Windows debloating.
 
-Ideal for **low-end systems**, **older laptops**, or **performance-hungry gaming rigs** like ASUS ROG.
-
----
-
-## 🔽 Quick Start (Download & Run)
-
-1. 📦 [Download ZIP](https://github.com/PriyomSaha/windows-optimizer-script/archive/refs/heads/main.zip) of this repository.
-2. 🗂️ **Extract** the ZIP to a folder (e.g., `Windows-Optimizer`).
-3. ▶️ **Right-click** `setup.ps1` and select **Run with PowerShell**.
-4. ✅ When prompted with `Execution Policy Change`, choose **Yes to All (A)** to allow the script to run.
-5. 🧼 The script will **unblock all files** and start the optimizer silently in the background.
-
-> 🛑 **If PowerShell scripts are restricted**, or you skipped the prompt, run this command once in PowerShell:
->
-> ```powershell
-> Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-> ```
+Ideal for **gaming rigs**, **low-end PCs**, and **older laptops** looking for maximum responsiveness.
 
 ---
 
-## 🧰 Features
+## 🌟 Key Features
 
-- ❌ Disables Windows Updates _(optional & reversible)_
-- 🛃 Cleans system temp folders
-- 📊 Monitors and trims RAM usage in real-time
-- ❌ Kills background apps and bloatware
-- ♻️ Loops automatically every 10 seconds
-- 🚿 Uses [RAMMap64](https://learn.microsoft.com/en-us/sysinternals/downloads/rammap) to clear standby memory
-- 🧠 Designed to work with **RAMMap64.exe** and a silent launcher
+* 📊 **Live Resource Monitor:** Real-time RAM and CPU progress meters on the dashboard.
+* 🧹 **Instant "Clean RAM Now":** One-click working set trimming and Sysinternals RAMMap standby memory flushing (available in UI and System Tray).
+* 🚫 **Customizable Process Termination:**
+  * Curated list of safe-to-kill background apps (OneDrive, Teams, OEM bloatware, etc.).
+  * **Active Task Scanner:** Scan currently running high-memory tasks and add them to your kill list.
+  * **Custom Process Manager:** Add any `.exe` by name with instant removal support.
+* ⚡ **OS & Visual Performance Tweaks:**
+  * Disable transparency and acrylic blur effects.
+  * Disable window minimize/maximize animation latency.
+  * Turn off Bing web search in Start Menu.
+  * Disable Xbox Game Bar background DVR recording.
+  * Toggle SysMain (Superfetch), Diagnostics Telemetry, and Print Spooler.
+  * Unlock & activate the **Ultimate Performance Power Plan**.
+* 🗑️ **UWP Bloatware Uninstaller:** One-click safe removal of pre-installed Windows packages (*Xbox Apps, Solitaire, Bing News/Weather, Clipchamp, Feedback Hub, Skype, etc.*).
+* 🛡️ **Single-Instance System Tray Engine:** Runs silently in the taskbar with right-click quick actions and auto-flushes ghost icons on exit.
+* ↩️ **Safe 1-Click Revert:** Completely restore all Windows services, visual effects, and registry settings to default with `revert.ps1` or `revert.bat`.
 
 ---
 
-## 📁 Folder Structure
+## 🚀 Quick Start
+
+1. **Download / Clone** this repository to a folder on your PC.
+2. **Double-click [`Run.bat`](Run.bat)**.
+3. When prompted, click **Yes** to allow Administrator privileges.
+4. The **Windows Optimizer Hub** window will launch!
+
+---
+
+## 📁 Project Structure
 
 ```
 .
-├── RAMMap/                  # (Optional) Additional RAMMap files
-├── clear_ram_loop.bat       # Main optimization script with looping
-├── run_invisible.vbs        # VBScript launcher for silent background execution
-├── RAMMap64.exe             # Download from Microsoft Sysinternals
-├── setup.ps1                # NEW: PowerShell launcher to unblock & run everything
-├── README.md
-├── LICENSE
-├── revert.bat               # (Optional) Undo script for updates
-└── screenshots/             # (Optional visuals)
+├── Run.bat              # Main launcher (Auto-elevates & opens GUI)
+├── Run-UI.ps1           # Modern WPF Dark Theme Dashboard & Settings Hub
+├── clear_ram_loop.ps1   # Core dynamic background optimizer engine
+├── config.json          # User preferences (Apps, Tweaks, UWP debloat list)
+├── tray_manager.ps1     # System tray controller & single-instance manager
+├── revert.bat           # 1-Click revert batch launcher
+├── revert.ps1           # Revert engine (Restores services, visuals & power plan)
+├── RAMMap64.exe         # Microsoft Sysinternals memory clearing tool
+├── WindowsOptimizer.exe # Lightweight background process host
+├── LICENSE              # MIT License
+└── README.md            # Documentation
 ```
 
 ---
 
-## ⚙️🧠 Manual Mode (For Geeks & Power Users)
+## ↩️ How to Revert Changes
 
-> 💡 Want full control like a true Windows ninja? Follow these steps manually:
-
-1. 💾 **Download [RAMMap64](https://learn.microsoft.com/en-us/sysinternals/downloads/rammap)** (if it's not already included).
-2. 🔐 **Right-click** `clear_ram_loop.bat` **or** `run_invisible.vbs` and select **Run as Administrator**.
-3. 🛡️ **Optional:** If Windows Defender blocks the files, temporarily **pause real-time protection**:
-   - Defender often flags `.bat` or `.vbs` scripts by default — even safe ones like this.
-   - These scripts are clean and designed only to **boost performance**.
-4. ✅ You're good to go. The optimization loop begins instantly!
-
-🧪 Perfect for **tech-savvy users**, **gamers**, and **DIY tweakers** who want max control.
+You can restore your default Windows settings, visual effects, and services at any time:
+* Click **↩️ Revert Changes** on the Dashboard in `Run.bat`.
+* Or right-click the system tray icon and choose **"Stop & Revert Everything"**.
+* Or double-click **`revert.bat`**.
 
 ---
 
-## 🚪 Processes It Kills
-
-- OneDrive.exe
-- Teams.exe
-- AdobeIPCBroker.exe, AdobeCollabSync.exe
-- ArmouryCrate.UserSessionHelper.exe, GameSDK.exe, AuraService.exe, NahimicService.exe
-- Suggested Extras for generic laptops:
-
-```batch
-taskkill /f /im YourPhone.exe
-taskkill /f /im SearchUI.exe
-taskkill /f /im Cortana.exe
-taskkill /f /im XboxGameBar.exe
-taskkill /f /im HPHotkeyMonitor.exe
-taskkill /f /im DellSupportAssistRemedation.exe
-taskkill /f /im LenovoVantageService.exe
-```
-
----
-
-## ⚠️ Important Notes & Disclaimer
-
-- ❗ Disables Windows Updates and modifies registry entries.
-- 🔐 Periodically re-enable updates manually to stay secure.
-- 💻 Intended for personal, non-enterprise systems only.
-- 👨‍⚖️ Use responsibly on systems you own or have permission to modify.
-- ❌ Do not use on school, office, or government devices.
-
----
-
-## ↩️ Undo / Revert Script
-
-To restore Windows Update manually, run:
-
-```cmd
-sc config wuauserv start= auto
-sc start wuauserv
-```
-
-Or use the included `revert.bat` file (Run as Administrator).
-
----
-
-## 📆 License
+## 📜 License
 
 [MIT License](LICENSE)
-
----
-
-## 🌟 Screenshots
-
-- ![Before and after ram cleaning](Capture.PNG)
-
-## 💡 Tips
-
-- 🧪 Run once per boot or let it loop in background.
-- 🕹️ Perfect for freeing up RAM before gaming.
-- 🧩 Customize background apps to kill for your system.
-
----
-
-## 🌚 Tags
-
-```
-batch-script, windows-optimizer, ram-cleaner, rammap, gaming-boost, disable-windows-update, temp-cleaner, bloatware-remover, windows10, windows11, rog-optimizer, sysinternals
-```
-
----
-
-## 👊 Support
-
-Like this tool? Give it a ⭐ and share with friends!
-
-PRs, suggestions, or issues are always welcome. Let’s make Windows faster, together.

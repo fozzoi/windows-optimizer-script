@@ -1,6 +1,6 @@
 @echo off
-title Revert Windows Optimizer Changes
-color 0C
+title Windows Optimizer Manager
+color 0B
 
 :: Check for administrator privileges
 net session >nul 2>&1
@@ -10,5 +10,6 @@ if %errorLevel% neq 0 (
     exit /b
 )
 
-powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File "%~dp0revert.ps1"
-echo [✓] System settings, services, and visuals restored to default.
+:: Run the UI
+powershell -ExecutionPolicy Bypass -WindowStyle Hidden -File "%~dp0Run-UI.ps1"
+exit
