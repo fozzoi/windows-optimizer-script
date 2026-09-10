@@ -1,203 +1,211 @@
-﻿{
-    "AppsToKill":  [
-                       {
-                           "Name":  "OneDrive",
-                           "Process":  "OneDrive",
-                           "Enabled":  true,
-                           "Custom":  false
-                       },
-                       {
-                           "Name":  "Microsoft Teams",
-                           "Process":  "Teams",
-                           "Enabled":  true,
-                           "Custom":  false
-                       },
-                       {
-                           "Name":  "Adobe IPC Broker",
-                           "Process":  "AdobeIPCBroker",
-                           "Enabled":  true,
-                           "Custom":  false
-                       },
-                       {
-                           "Name":  "Adobe Collab Sync",
-                           "Process":  "AdobeCollabSync",
-                           "Enabled":  true,
-                           "Custom":  false
-                       },
-                       {
-                           "Name":  "Armoury Crate Helper",
-                           "Process":  "ArmouryCrate.UserSessionHelper",
-                           "Enabled":  true,
-                           "Custom":  false
-                       },
-                       {
-                           "Name":  "Aura Service",
-                           "Process":  "AuraService",
-                           "Enabled":  true,
-                           "Custom":  false
-                       },
-                       {
-                           "Name":  "HP Touchpoint Analytics",
-                           "Process":  "TouchpointAnalyticsClientService",
-                           "Enabled":  true,
-                           "Custom":  false
-                       },
-                       {
-                           "Name":  "HP Omen Install Monitor",
-                           "Process":  "OmenInstallMonitor",
-                           "Enabled":  true,
-                           "Custom":  false
-                       },
-                       {
-                           "Name":  "PC Manager Service",
-                           "Process":  "MSPCManager",
-                           "Enabled":  true,
-                           "Custom":  false
-                       },
-                       {
-                           "Name":  "Phone Link / Your Phone",
-                           "Process":  "YourPhone",
-                           "Enabled":  true,
-                           "Custom":  false
-                       },
-                       {
-                           "Name":  "Cortana",
-                           "Process":  "Cortana",
-                           "Enabled":  true,
-                           "Custom":  false
-                       },
-                       {
-                           "Name":  "Memory Compression",
-                           "Process":  "Memory Compression",
-                           "Enabled":  true,
-                           "Custom":  true
-                       },
-                       {
-                           "Name":  "MsMpEng",
-                           "Process":  "MsMpEng",
-                           "Enabled":  true,
-                           "Custom":  true
-                       }
-                   ],
-    "OSTweaks":  [
-                     {
-                         "Name":  "Disable SysMain (Superfetch)",
-                         "Id":  "SysMain",
-                         "Category":  "Services",
-                         "Enabled":  true
-                     },
-                     {
-                         "Name":  "Disable Diagnostics \u0026 Telemetry",
-                         "Id":  "Telemetry",
-                         "Category":  "Privacy",
-                         "Enabled":  true
-                     },
-                     {
-                         "Name":  "Disable Print Spooler (If no printer used)",
-                         "Id":  "Spooler",
-                         "Category":  "Services",
-                         "Enabled":  true
-                     },
-                     {
-                         "Name":  "Disable Windows Search Indexer",
-                         "Id":  "WSearch",
-                         "Category":  "Services",
-                         "Enabled":  false
-                     },
-                     {
-                         "Name":  "Clean Temp Folders Automatically",
-                         "Id":  "CleanTemp",
-                         "Category":  "Maintenance",
-                         "Enabled":  true
-                     },
-                     {
-                         "Name":  "Flush DNS Cache",
-                         "Id":  "FlushDNS",
-                         "Category":  "Maintenance",
-                         "Enabled":  true
-                     },
-                     {
-                         "Name":  "Trim RAM Working Sets \u0026 Standby (RAMMap)",
-                         "Id":  "RAMMap",
-                         "Category":  "Memory",
-                         "Enabled":  true
-                     },
-                     {
-                         "Name":  "Disable Windows Transparency Effects",
-                         "Id":  "DisableTransparency",
-                         "Category":  "Visuals",
-                         "Enabled":  true
-                     },
-                     {
-                         "Name":  "Disable Window Minimize/Maximize Animations",
-                         "Id":  "DisableAnimations",
-                         "Category":  "Visuals",
-                         "Enabled":  true
-                     },
-                     {
-                         "Name":  "Disable Bing Web Search in Start Menu",
-                         "Id":  "DisableBingSearch",
-                         "Category":  "Performance",
-                         "Enabled":  true
-                     },
-                     {
-                         "Name":  "Disable Xbox Game Bar \u0026 Background DVR",
-                         "Id":  "DisableGameDVR",
-                         "Category":  "Gaming",
-                         "Enabled":  true
-                     },
-                     {
-                         "Name":  "Enable Ultimate Performance Power Plan",
-                         "Id":  "UltimatePowerPlan",
-                         "Category":  "Performance",
-                         "Enabled":  false
-                     }
-                 ],
-    "UWPApps":  [
-                    {
-                        "Name":  "Microsoft Solitaire Collection",
-                        "Package":  "*MicrosoftSolitaireCollection*",
-                        "Description":  "Card games bundle"
-                    },
-                    {
-                        "Name":  "Xbox Apps \u0026 Gaming Overlay",
-                        "Package":  "*Microsoft.XboxApp*|*XboxGamingOverlay*|*XboxSpeechToTextOverlay*",
-                        "Description":  "Xbox gaming integration"
-                    },
-                    {
-                        "Name":  "Bing Weather, News \u0026 Sports",
-                        "Package":  "*BingNews*|*BingWeather*|*BingSports*|*BingFinance*",
-                        "Description":  "MSN widgets"
-                    },
-                    {
-                        "Name":  "Phone Link / Your Phone",
-                        "Package":  "*YourPhone*",
-                        "Description":  "Phone sync utility"
-                    },
-                    {
-                        "Name":  "Clipchamp Video Editor",
-                        "Package":  "*Clipchamp*",
-                        "Description":  "Web video editor"
-                    },
-                    {
-                        "Name":  "Windows Feedback Hub",
-                        "Package":  "*WindowsFeedbackHub*",
-                        "Description":  "Feedback app"
-                    },
-                    {
-                        "Name":  "Skype",
-                        "Package":  "*SkypeApp*",
-                        "Description":  "Legacy messaging"
-                    },
-                    {
-                        "Name":  "3D Viewer \u0026 Print 3D",
-                        "Package":  "*3DBuilder*|*Print3D*",
-                        "Description":  "3D modeling tools"
-                    },
-                    {
-                        "Name":  "Microsoft Tips \u0026 Get Help",
-                        "Package":  "*GetHelp*|*Getstarted*",
-                        "Description":  "Tips and tutorials"
-                    }
-                ]
+{
+    "BoosterPaused": false,
+    "AutoKillApps": true,
+    "AppsToKill": [
+        {
+            "Name": "OneDrive",
+            "Process": "OneDrive",
+            "Enabled": true,
+            "Custom": false
+        },
+        {
+            "Name": "Microsoft Teams",
+            "Process": "Teams",
+            "Enabled": true,
+            "Custom": false
+        },
+        {
+            "Name": "Adobe IPC Broker",
+            "Process": "AdobeIPCBroker",
+            "Enabled": true,
+            "Custom": false
+        },
+        {
+            "Name": "Adobe Collab Sync",
+            "Process": "AdobeCollabSync",
+            "Enabled": true,
+            "Custom": false
+        },
+        {
+            "Name": "Armoury Crate Helper",
+            "Process": "ArmouryCrate.UserSessionHelper",
+            "Enabled": true,
+            "Custom": false
+        },
+        {
+            "Name": "Aura Service",
+            "Process": "AuraService",
+            "Enabled": true,
+            "Custom": false
+        },
+        {
+            "Name": "HP Touchpoint Analytics",
+            "Process": "TouchpointAnalyticsClientService",
+            "Enabled": true,
+            "Custom": false
+        },
+        {
+            "Name": "HP Omen Install Monitor",
+            "Process": "OmenInstallMonitor",
+            "Enabled": true,
+            "Custom": false
+        },
+        {
+            "Name": "PC Manager Service",
+            "Process": "MSPCManager",
+            "Enabled": true,
+            "Custom": false
+        },
+        {
+            "Name": "Phone Link / Your Phone",
+            "Process": "YourPhone",
+            "Enabled": true,
+            "Custom": false
+        },
+        {
+            "Name": "Cortana",
+            "Process": "Cortana",
+            "Enabled": true,
+            "Custom": false
+        },
+        {
+            "Name": "Memory Compression",
+            "Process": "Memory Compression",
+            "Enabled": true,
+            "Custom": true
+        },
+        {
+            "Name": "MsMpEng",
+            "Process": "MsMpEng",
+            "Enabled": true,
+            "Custom": true
+        }
+    ],
+    "OSTweaks": [
+        {
+            "Name": "Restore Windows 10 Classic Context Menu",
+            "Id": "ClassicContextMenu",
+            "Category": "System",
+            "Enabled": false
+        },
+        {
+            "Name": "Disable Windows Transparency & Blur Effects",
+            "Id": "DisableTransparency",
+            "Category": "Visuals",
+            "Enabled": false
+        },
+        {
+            "Name": "Disable Window Minimize/Maximize Animations",
+            "Id": "DisableAnimations",
+            "Category": "Visuals",
+            "Enabled": false
+        },
+        {
+            "Name": "Disable SysMain (Superfetch)",
+            "Id": "SysMain",
+            "Category": "Services",
+            "Enabled": true
+        },
+        {
+            "Name": "Disable Diagnostics & Telemetry",
+            "Id": "Telemetry",
+            "Category": "Privacy",
+            "Enabled": true
+        },
+        {
+            "Name": "Disable Print Spooler (If no printer used)",
+            "Id": "Spooler",
+            "Category": "Services",
+            "Enabled": true
+        },
+        {
+            "Name": "Disable Windows Search Indexer",
+            "Id": "WSearch",
+            "Category": "Services",
+            "Enabled": false
+        },
+        {
+            "Name": "Clean Temp Folders Automatically",
+            "Id": "CleanTemp",
+            "Category": "Maintenance",
+            "Enabled": true
+        },
+        {
+            "Name": "Flush DNS Cache",
+            "Id": "FlushDNS",
+            "Category": "Maintenance",
+            "Enabled": true
+        },
+        {
+            "Name": "Trim RAM Working Sets & Standby (RAMMap)",
+            "Id": "RAMMap",
+            "Category": "Memory",
+            "Enabled": true
+        },
+        {
+            "Name": "Disable Bing Web Search in Start Menu",
+            "Id": "DisableBingSearch",
+            "Category": "Performance",
+            "Enabled": true
+        },
+        {
+            "Name": "Disable Xbox Game Bar & Background DVR",
+            "Id": "DisableGameDVR",
+            "Category": "Gaming",
+            "Enabled": true
+        },
+        {
+            "Name": "Enable Ultimate Performance Power Plan",
+            "Id": "UltimatePowerPlan",
+            "Category": "Performance",
+            "Enabled": false
+        }
+    ],
+    "UWPApps": [
+        {
+            "Name": "Microsoft Solitaire Collection",
+            "Package": "*MicrosoftSolitaireCollection*",
+            "Description": "Card games bundle"
+        },
+        {
+            "Name": "Xbox Apps & Gaming Overlay",
+            "Package": "*Microsoft.XboxApp*|*XboxGamingOverlay*|*XboxSpeechToTextOverlay*",
+            "Description": "Xbox gaming integration"
+        },
+        {
+            "Name": "Bing Weather, News & Sports",
+            "Package": "*BingNews*|*BingWeather*|*BingSports*|*BingFinance*",
+            "Description": "MSN widgets"
+        },
+        {
+            "Name": "Phone Link / Your Phone",
+            "Package": "*YourPhone*",
+            "Description": "Phone sync utility"
+        },
+        {
+            "Name": "Clipchamp Video Editor",
+            "Package": "*Clipchamp*",
+            "Description": "Web video editor"
+        },
+        {
+            "Name": "Windows Feedback Hub",
+            "Package": "*WindowsFeedbackHub*",
+            "Description": "Feedback app"
+        },
+        {
+            "Name": "Skype",
+            "Package": "*SkypeApp*",
+            "Description": "Legacy messaging"
+        },
+        {
+            "Name": "3D Viewer & Print 3D",
+            "Package": "*3DBuilder*|*Print3D*",
+            "Description": "3D modeling tools"
+        },
+        {
+            "Name": "Microsoft Tips & Get Help",
+            "Package": "*GetHelp*|*Getstarted*",
+            "Description": "Tips and tutorials"
+        }
+    ]
 }

@@ -105,12 +105,18 @@ foreach ($s in $oemServices) {
 }
 
 Write-Host "[*] Restoring Visuals, Search & Registry Settings..." -ForegroundColor Cyan
-# Transparency
+# Transparency & Blur
 New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "EnableTransparency" -Value 1 -PropertyType DWORD -Force -ErrorAction SilentlyContinue | Out-Null
 
 # Animations
 New-ItemProperty -Path "HKCU:\Control Panel\Desktop\WindowMetrics" -Name "MinAnimate" -Value "1" -PropertyType String -Force -ErrorAction SilentlyContinue | Out-Null
 New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -Value 3 -PropertyType DWORD -Force -ErrorAction SilentlyContinue | Out-Null
+
+# Windows 10 Classic Context Menu (Remove override to return to Windows 11 default)
+$parentClsid = "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}"
+if (Test-Path $parentClsid) {
+    Remove-Item -Path $parentClsid -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+}
 
 # Search Box Suggestions (Bing in Start)
 Remove-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\Explorer" -Name "DisableSearchBoxSuggestions" -Force -ErrorAction SilentlyContinue | Out-Null
@@ -124,6 +130,17 @@ Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollect
 
 Write-Host "[*] Restoring Balanced Power Plan..." -ForegroundColor Cyan
 powercfg /setactive 381b4222-f694-41f0-9685-ff5bb260df2e 2>&1 | Out-Null
+
+# Reset BoosterPaused flag in config.json if present
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+$configFile = Join-Path $scriptDir "config.json"
+if (Test-Path $configFile) {
+    try {
+        $cfg = Get-Content $configFile -Raw | ConvertFrom-Json
+        $cfg.BoosterPaused = $false
+        $cfg | ConvertTo-Json -Depth 5 | Set-Content $configFile -Encoding UTF8
+    } catch {}
+}
 
 Write-Host "[*] Terminating Running Optimizer Processes..." -ForegroundColor Cyan
 Get-Process -Name "WindowsOptimizer" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
