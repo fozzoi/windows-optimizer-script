@@ -1,9 +1,23 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+$scriptDir = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent $MyInvocation.MyCommand.Definition }
 $loopPath = Join-Path $scriptDir "clear_ram_loop.ps1"
 $configFile = Join-Path $scriptDir "config.json"
+$exePath = Join-Path $scriptDir "WindowsOptimizer.exe"
+$binary = if (Test-Path $exePath) { $exePath } else { "powershell.exe" }
+
+# ----------------- WAIT FOR EXPLORER ON BOOT -----------------
+# If started at Windows logon/boot, ensure explorer and desktop shell are loaded before registering tray icon
+$waitCount = 0
+while (-not (Get-Process -Name explorer -ErrorAction SilentlyContinue) -and $waitCount -lt 30) {
+    Start-Sleep -Seconds 1
+    $waitCount++
+}
+if ($waitCount -gt 0) {
+    # Give Windows taskbar and system tray notification area time to initialize
+    Start-Sleep -Seconds 5
+}
 
 function Get-Config {
     if (Test-Path $configFile) {
@@ -27,6 +41,7 @@ function Save-Config {
 # ----------------- SINGLE INSTANCE CHECK & CLEANUP -----------------
 # Kill any existing tray managers or optimizer loops before starting this instance
 try {
+    Get-Process -Name "WindowsOptimizer" -ErrorAction SilentlyContinue | Where-Object { $_.Id -ne $PID } | Stop-Process -Force -ErrorAction SilentlyContinue
     Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | Where-Object { 
         $_.ProcessId -ne $PID -and (
             $_.CommandLine -like "*tray_manager.ps1*" -or 
@@ -39,7 +54,7 @@ try {
 
 # Start the powershell loop invisibly
 $procInfo = New-Object System.Diagnostics.ProcessStartInfo
-$procInfo.FileName = "powershell.exe"
+$procInfo.FileName = $binary
 $procInfo.Arguments = "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$loopPath`""
 $procInfo.WindowStyle = [System.Diagnostics.ProcessWindowStyle]::Hidden
 $procInfo.CreateNoWindow = $true
@@ -88,7 +103,7 @@ $openUiMenuItem = New-Object System.Windows.Forms.MenuItem
 $openUiMenuItem.Text = "⚙️ Open Optimizer Hub"
 $openUiMenuItem.add_Click({
     $uiPath = Join-Path $scriptDir "Run-UI.ps1"
-    Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$uiPath`"" -WindowStyle Hidden
+    Start-Process -FilePath $binary -ArgumentList "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$uiPath`"" -WindowStyle Hidden
 })
 $contextMenu.MenuItems.Add($openUiMenuItem) | Out-Null
 
@@ -105,7 +120,7 @@ $revertMenuItem.add_Click({
     
     $revertPath = Join-Path $scriptDir "revert.ps1"
     if (Test-Path $revertPath) {
-        Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$revertPath`"" -WindowStyle Hidden
+        Start-Process -FilePath $binary -ArgumentList "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$revertPath`"" -WindowStyle Hidden
     }
     
     [System.Windows.Forms.Application]::Exit()
@@ -120,6 +135,7 @@ $exitMenuItem.add_Click({
     $notifyIcon.Dispose()
     
     # Kill the background loop process
+    Get-Process -Name "WindowsOptimizer" -ErrorAction SilentlyContinue | Where-Object { $_.Id -ne $PID } | Stop-Process -Force -ErrorAction SilentlyContinue
     try {
         Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | Where-Object { 
             $_.CommandLine -like "*clear_ram_loop.ps1*" 
@@ -137,7 +153,7 @@ $notifyIcon.ContextMenu = $contextMenu
 # Double click opens UI
 $notifyIcon.add_DoubleClick({
     $uiPath = Join-Path $scriptDir "Run-UI.ps1"
-    Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$uiPath`"" -WindowStyle Hidden
+    Start-Process -FilePath $binary -ArgumentList "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$uiPath`"" -WindowStyle Hidden
 })
 
 function Update-TrayState {

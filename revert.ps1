@@ -152,6 +152,14 @@ try {
     }
 } catch {}
 
+Write-Host "[*] Removing Auto-Run Startup Tasks..." -ForegroundColor Cyan
+try {
+    Unregister-ScheduledTask -TaskName "WindowsOptimizerLoop" -Confirm:$false -ErrorAction SilentlyContinue | Out-Null
+} catch {}
+try {
+    Start-Process -FilePath "schtasks.exe" -ArgumentList @("/delete", "/tn", "WindowsOptimizerLoop", "/f") -Wait -NoNewWindow -ErrorAction SilentlyContinue | Out-Null
+} catch {}
+
 # Clear ghost tray icons
 Refresh-SystemTray
 

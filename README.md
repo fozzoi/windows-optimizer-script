@@ -55,6 +55,7 @@ Ideal for **gaming rigs**, **low-end PCs**, and **workstations** looking for max
 ```
 .
 ├── Run.bat              # Main launcher (Auto-elevates & opens GUI)
+├── Install-AutoRun.bat  # 1-Click register & start Optimizer on Windows boot
 ├── Run-UI.ps1           # Modern WPF Dark Theme Dashboard & Settings Hub
 ├── clear_ram_loop.ps1   # Core dynamic background optimizer engine
 ├── config.json          # User preferences (Apps, Tweaks, UWP debloat list)

@@ -112,11 +112,17 @@ function Stop-ExistingOptimizer {
 }
 
 function Is-OptimizerRunning {
-    $found = Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | Where-Object { 
-        $_.CommandLine -like "*tray_manager.ps1*" -or 
-        $_.CommandLine -like "*clear_ram_loop.ps1*" 
+    $p = Get-Process -Name "WindowsOptimizer" -ErrorAction SilentlyContinue
+    if ($p) { return $true }
+    try {
+        $found = Get-CimInstance Win32_Process -ErrorAction SilentlyContinue | Where-Object { 
+            $_.CommandLine -like "*tray_manager.ps1*" -or 
+            $_.CommandLine -like "*clear_ram_loop.ps1*" 
+        }
+        return ($null -ne $found)
+    } catch {
+        return $false
     }
-    return ($null -ne $found)
 }
 
 function Set-ClassicContextMenu {
@@ -839,7 +845,7 @@ $btnScanActive.Add_Click({
     $statusText.Text = "Scanning active memory-heavy processes..."
     $topProcesses = Get-Process | Where-Object { 
         $_.WorkingSet64 -gt 40MB -and 
-        $_.ProcessName -notmatch 'System|Idle|explorer|powershell|WindowsOptimizer|svchost|csrss|services|dwm|lsass' 
+        $_.ProcessName -notmatch 'System|Idle|explorer|powershell|WindowsOptimizer|svchost|csrss|services|dwm|lsass|Memory Compression|MsMpEng' 
     } | Sort-Object WorkingSet64 -Descending | Select-Object -First 10
 
     if ($topProcesses) {
@@ -950,6 +956,57 @@ function Stop-BoosterSafely {
 $btnQuickStop.Add_Click({ Stop-BoosterSafely })
 $btnStopOptimizer.Add_Click({ Stop-BoosterSafely })
 
+function Register-StartupTask {
+    param([string]$exePath, [string]$trayScript)
+    $taskName = "WindowsOptimizerLoop"
+    $registered = $false
+
+    # Approach 1: Native ScheduledTasks module cmdlets (Cleanest, avoids quoting bugs)
+    try {
+        $action = New-ScheduledTaskAction -Execute $exePath -Argument "-WindowStyle Hidden -ExecutionPolicy Bypass -File `"$trayScript`""
+        $trigger = New-ScheduledTaskTrigger -AtLogOn
+        try { $trigger.Delay = 'PT5S' } catch {}
+        $principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive -RunLevel Highest
+        $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Days 0)
+        Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Principal $principal -Settings $settings -Force -ErrorAction Stop | Out-Null
+        $registered = $true
+    } catch {}
+
+    # Approach 2: schtasks.exe using direct argument array (bypasses shell parsing issues)
+    if (-not $registered) {
+        try {
+            $trArg = "`"$exePath`" -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$trayScript`""
+            $proc = Start-Process -FilePath "schtasks.exe" -ArgumentList @("/create", "/tn", $taskName, "/tr", $trArg, "/sc", "onlogon", "/rl", "highest", "/f") -Wait -PassThru -NoNewWindow -ErrorAction SilentlyContinue
+            if ($proc.ExitCode -eq 0) {
+                $registered = $true
+            }
+        } catch {}
+    }
+
+    # Approach 3: cmd /c schtasks fallback
+    if (-not $registered) {
+        try {
+            $cmdLine = "schtasks /create /tn `"$taskName`" /tr `"\`"$exePath\`" -WindowStyle Hidden -ExecutionPolicy Bypass -File \`"$trayScript\`"`" /sc onlogon /rl highest /f"
+            $proc = Start-Process -FilePath "cmd.exe" -ArgumentList @("/c", $cmdLine) -Wait -PassThru -NoNewWindow -ErrorAction SilentlyContinue
+            if ($proc.ExitCode -eq 0) {
+                $registered = $true
+            }
+        } catch {}
+    }
+
+    return $registered
+}
+
+function Unregister-StartupTask {
+    $taskName = "WindowsOptimizerLoop"
+    try {
+        Unregister-ScheduledTask -TaskName $taskName -Confirm:$false -ErrorAction SilentlyContinue | Out-Null
+    } catch {}
+    try {
+        Start-Process -FilePath "schtasks.exe" -ArgumentList @("/delete", "/tn", $taskName, "/f") -Wait -NoNewWindow -ErrorAction SilentlyContinue | Out-Null
+    } catch {}
+}
+
 # Start Optimizer & Add to Startup
 $btnStartStartup.Add_Click({
     Stop-ExistingOptimizer
@@ -961,13 +1018,18 @@ $btnStartStartup.Add_Click({
         Copy-Item "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -Destination $exePath -ErrorAction SilentlyContinue
     }
     $trayManager = Join-Path $scriptDir "tray_manager.ps1"
-    $taskCmd = "schtasks /create /tn `"WindowsOptimizerLoop`" /tr `"\`"$exePath\`" -WindowStyle Hidden -ExecutionPolicy Bypass -File \`"$trayManager\`"`" /sc onlogon /rl highest /f"
-    Invoke-Expression $taskCmd 2>&1 | Out-Null
+    $taskSuccess = Register-StartupTask -exePath $exePath -trayScript $trayManager
+
     Start-Process -FilePath $exePath -ArgumentList "-WindowStyle Hidden -ExecutionPolicy Bypass -File `"$trayManager`"" -WindowStyle Hidden
-    Start-Sleep -Milliseconds 400
+    Start-Sleep -Milliseconds 600
     Update-UIStateDisplay
-    $statusText.Text = "Optimizer started & set to auto-run on boot!"
-    $statusIcon.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFromString("#34D399")
+    if ($taskSuccess) {
+        $statusText.Text = "Optimizer started & set to auto-run on boot!"
+        $statusIcon.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFromString("#34D399")
+    } else {
+        $statusText.Text = "Optimizer started, but startup task failed to register. Ensure Admin privileges."
+        $statusIcon.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFromString("#FBBF24")
+    }
 })
 
 # Start Optimizer Once
@@ -982,7 +1044,7 @@ $btnStartOnce.Add_Click({
     }
     $trayManager = Join-Path $scriptDir "tray_manager.ps1"
     Start-Process -FilePath $exePath -ArgumentList "-WindowStyle Hidden -ExecutionPolicy Bypass -File `"$trayManager`"" -WindowStyle Hidden
-    Start-Sleep -Milliseconds 400
+    Start-Sleep -Milliseconds 600
     Update-UIStateDisplay
     $statusText.Text = "Optimizer running in system tray."
     $statusIcon.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFromString("#34D399")
@@ -997,7 +1059,7 @@ $btnRevert.Add_Click({
     if (Test-Path $revertPath) {
         Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$revertPath`"" -Wait
     }
-    Invoke-Expression 'schtasks /delete /tn "WindowsOptimizerLoop" /f 2>$null' | Out-Null
+    Unregister-StartupTask
     Refresh-SystemTray
     $config = Get-OptimizerConfig
     Update-UIStateDisplay
